@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B7AC38A61AEEFA2A00262725 /* ConverterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B7AC38A51AEEFA2A00262725 /* ConverterTests.m */; };
 		B7E742C41AEE8A290003E0C1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E742C31AEE8A290003E0C1 /* main.m */; };
 		B7E742C71AEE8A290003E0C1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E742C61AEE8A290003E0C1 /* AppDelegate.m */; };
 		B7E742CA1AEE8A290003E0C1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B7E742C91AEE8A290003E0C1 /* ViewController.m */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B7AC38A51AEEFA2A00262725 /* ConverterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConverterTests.m; sourceTree = "<group>"; };
 		B7E742BE1AEE8A290003E0C1 /* EPCEncoder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EPCEncoder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7E742C21AEE8A290003E0C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7E742C31AEE8A290003E0C1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -115,6 +117,7 @@
 		B7E742DA1AEE8A290003E0C1 /* EPCEncoderTests */ = {
 			isa = PBXGroup;
 			children = (
+				B7AC38A51AEEFA2A00262725 /* ConverterTests.m */,
 				B7E742DD1AEE8A290003E0C1 /* EPCEncoderTests.m */,
 				B7E742DB1AEE8A290003E0C1 /* Supporting Files */,
 			);
@@ -241,6 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7AC38A61AEEFA2A00262725 /* ConverterTests.m in Sources */,
 				B7E742DE1AEE8A290003E0C1 /* EPCEncoderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,6 +430,7 @@
 				B7E742E31AEE8A290003E0C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B7E742E41AEE8A290003E0C1 /* Build configuration list for PBXNativeTarget "EPCEncoderTests" */ = {
 			isa = XCConfigurationList;
@@ -434,6 +439,7 @@
 				B7E742E61AEE8A290003E0C1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
