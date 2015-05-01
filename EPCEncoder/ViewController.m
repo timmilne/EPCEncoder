@@ -36,6 +36,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    // Set the status bar to white (iOS bug)
+    // Also had to add the statusBarStyle entry to info.plist
+    self.navigationController.navigationBar.BarStyle = UIStatusBarStyleLightContent;
 }
 
 - (void)didReceiveMemoryWarning {
