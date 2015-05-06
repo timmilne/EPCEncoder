@@ -29,9 +29,9 @@
 @property NSString *gid_uri;
 
 - (void)withDpt:(NSString *)Dpt
-        withCls:(NSString *)Cls
-        withItm:(NSString *)Itm
-        withSer:(NSString *)Ser;
+        cls:(NSString *)Cls
+        itm:(NSString *)Itm
+        ser:(NSString *)Ser;
 
 - (NSString *)calculateCheckDigit:(NSString *)upc;
 

@@ -32,9 +32,9 @@ static NSString *GID_Bin_Prefix   = @"00110101";
 
 // Encode with inputs
 - (void)withDpt:(NSString *)dpt
-        withCls:(NSString *)cls
-        withItm:(NSString *)itm
-        withSer:(NSString *)ser {
+        cls:(NSString *)cls
+        itm:(NSString *)itm
+        ser:(NSString *)ser {
     
     // Have we done this?
     if (_convert == nil) _convert = [Converter alloc];

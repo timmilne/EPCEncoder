@@ -87,7 +87,7 @@
     if (_encode == nil) _encode = [EPCEncoder alloc];
     
     // Update the EPCEncoder object
-    [_encode withDpt:dpt withCls:cls withItm:itm withSer:ser];
+    [_encode withDpt:dpt cls:cls itm:itm ser:ser];
 
     // Set the new encodings in the interface
     [self.SGTIN_URI_fld setText:[_encode sgtin_uri]];
