@@ -25,7 +25,7 @@
     _encode = [EPCEncoder alloc];
     
     // Initialize the EPCEncoder object
-    [_encode withDpt:@"281" withCls:@"00" withItm:@"8570" withSer:@"12345"];
+    [_encode withDpt:@"281" cls:@"00" itm:@"8570" ser:@"12345"];
 }
 
 - (void)tearDown {
