@@ -17,11 +17,6 @@
 #import "EPCEncoder.h"
 
 @interface ViewController ()<UgiInventoryDelegate>
-{
-    UgiRfidConfiguration *_config;
-    NSMutableString *_oldEPC;
-    NSMutableString *_newEPC;
-}
 
 @property (weak, nonatomic) IBOutlet UITextField *Dpt_fld;
 @property (weak, nonatomic) IBOutlet UITextField *Cls_fld;
@@ -37,8 +32,14 @@
 @end
 
 @implementation ViewController {
-    EPCEncoder *_encode;
+    EPCEncoder              *_encode;
+    UgiRfidConfiguration    *_config;
+    NSMutableString         *_oldEPC;
+    NSMutableString         *_newEPC;
+    UIColor                 *_defaultBackgroundColor;
 }
+
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:0.65]
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -68,6 +69,7 @@
     _newEPC = [[NSMutableString alloc] init];
     [_oldEPC setString:@""];
     [_newEPC setString:@""];
+    _defaultBackgroundColor = [self.view backgroundColor];
     
     // Update the encoder
     [self updateAll];
@@ -131,6 +133,12 @@
     [self.GIAI_Hex_fld setText:[_encode giai_hex]];
     [self.GID_URI_fld setText:[_encode gid_uri]];
     [self.GID_Hex_fld setText:[_encode gid_hex]];
+    
+    // Set the background color
+    [self.view setBackgroundColor:_defaultBackgroundColor];
+    
+    // Stop inventory if active
+    [[Ugi singleton].activeInventory stopInventory];
 }
 
 - (IBAction)encodeSGTIN:(id)sender {
@@ -166,24 +174,29 @@
     
     if ([_newEPC length] == 0) return;
 
-    // Use the old tag number
+    // Set the programming inputs
     UgiEpc *oldEpc = [UgiEpc epcFromString:_oldEPC];
+    UgiEpc *newEpc = [UgiEpc epcFromString:_newEPC];
 
-// TPM only test this when you are ready
-/*
     // Encode it with the new number
-    UgiEpc *newEpc = [UgiEpc epcFromString:[_encode sgtin_hex]];
     [[Ugi singleton].activeInventory programTag:oldEpc
                                           toEpc:newEpc
                                    withPassword:UGI_NO_PASSWORD
                                   whenCompleted:^(UgiTag *tag, UgiTagAccessReturnValues result) {
                                       if (result == UGI_TAG_ACCESS_OK) {
                                           // tag programmed successfully
+                                          NSLog(@"Tag programmed successfully");
+                                          [self.view setBackgroundColor:UIColorFromRGB(0xA4CD39)];
+                                          
                                       } else {
                                           // tag programming was unsuccessful
+                                          NSLog(@"Tag programming UNSUCCESSFUL");
+                                          [self.view setBackgroundColor:UIColorFromRGB(0xCC0000)];
                                       }
+                                      // Stop the RFID reader
+                                      [[Ugi singleton].activeInventory stopInventory];
                                   }];
- */
+
     // Our work is done
     [_oldEPC setString:@""];
 }
@@ -194,9 +207,6 @@
 - (void) inventoryTagFound:(UgiTag *)tag
    withDetailedPerReadData:(NSArray *)detailedPerReadData {
     // Tag was found for the first time
-    
-    // Stop the RFID reader
-    [[Ugi singleton].activeInventory stopInventory];
     
     // Begin encoding with old RFID tag
     [self endEncode:[tag.epc toString]];
